@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farewell Message - To: Akira From: JP ❤️</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffeef8 0%, #f8e8ff 50%, #fff0f5 100%);
+    color: #4a2c4a;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255,182,193,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,192,203,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255,218,224,0.2) 0%, transparent 50%);
+    z-index: -1;
+    animation: sparkle 20s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle { 0% { opacity: 0.8; } 100% { opacity: 1; } }
+
+.page { position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    opacity: 0; transform: translateX(100%);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); padding: 2rem;
+}
+
+.page.active { opacity: 1; transform: translateX(0); }
+.page.fade-out { transform: translateX(-100%); }
+
+.intro h1 {
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    text-align: center; margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #ff69b4, #ff1493, #c71585);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.intro .subtitle { font-size: 1.3rem; color: #ff69b4; margin-bottom: 2rem; font-weight: 600; }
+.intro p { font-size: 1.3rem; text-align: center; max-width: 650px; margin-bottom: 3rem; line-height: 1.6; opacity: 0.95; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1200px; padding: 1rem; }
+
+.media-item {
+    background: rgba(255, 182, 193, 0.25); border-radius: 20px; padding: 1.8rem;
+    text-align: center; backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 105, 180, 0.3);
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+}
+
+.media-item:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
+    border-color: rgba(255, 20, 147, 0.5);
+}
+
+.media-item video, .media-item img { width: 100%; height: 220px; object-fit: cover; border-radius: 16px; margin-bottom: 1.2rem; box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+
+.caption { font-size: 1.1rem; font-style: italic; color: #4a2c4a; line-height: 1.4; font-weight: 500; }
+
+.final-message { text-align: center; max-width: 750px; padding: 2rem; background: rgba(255, 182, 193, 0.15); border-radius: 25px; border: 2px solid rgba(255, 105, 180, 0.3); backdrop-filter: blur(15px); }
+.final-message h2 { font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 2rem; background: linear-gradient(45deg, #ff1493, #ff69b4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.final-message p { font-size: 1.25rem; line-height: 1.7; opacity: 0.95; margin-bottom: 1.5rem; }
+
+.progress-btn { background: linear-gradient(45deg, #ff69b4, #ff1493, #c71585); color: white; border: none; padding: 1.2rem 3rem; font-size: 1.2rem; border-radius: 50px; cursor: pointer; transition: all 0.4s ease; box-shadow: 0 12px 35px rgba(255, 105, 180, 0.4); margin-top: 2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.progress-btn:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(255, 105, 180, 0.5); }
+.progress-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+@media (max-width: 768px) { .gallery { grid-template-columns: 1fr; gap: 1.5rem; } .media-item video, .media-item img { height: 280px; } }
+
+.hearts { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+.heart { position: absolute; color: #ff69b4; font-size: 20px; animation: float 6s infinite linear; }
+@keyframes float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-100px) rotate(360deg); opacity: 0; } }
+</style>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+    <source src="labyou.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- Floating Hearts -->
+<div class="hearts" id="hearts"></div>
+
+<!-- Page 1: Intro -->
+<div class="page active" id="page1">
+    <div class="intro">
+        <h1>Farewell Message / Goodbye Letter</h1>
+        <div class="subtitle">To: Akira 💕 From: JP</div>
+        <p>hi Aki, how are you? hope your ok :&gt; yk that this is the end and i make a farewell message/letter for you! 🥹🫶 just click the begin button and look at our memories 🥹</p>
+        <button class="progress-btn" onclick="nextPage()">Begin → 💖</button>
+    </div>
+</div>
+
+<!-- Page 2: Gallery -->
+<div class="page" id="page2">
+    <div class="gallery">
+        <div class="media-item"><img src="toga.jpg" alt="Toga moment"><div class="caption">"remember this? before tayong mag toga pic, tayo muna ang nag pic😆 diko makakalimutan tong moment na ito, kasi pasimple pa lang ako nito kimuha ng pic sayo sicne di pa naman ako nagsasabi that time"</div></div>
+        <div class="media-item"><img src="aftersleepover.jpg" alt="After sleepover"><div class="caption">"after over nigh. Ito yung time na sasabak na tayo sa cheerdance pasimple lang din ako sa part na yan BWHAHAHA and ayan yung time na bumalik pa tayo sa muzon dahil may naiwan na prop🫠"</div></div>
+        <div class="media-item"><video controls preload="metadata"><source src="wagpahalata.mp4" type="video/mp4"></video><div class="caption">"nagpipigil ng feelings BWHAHAHAH #wagpahalatamp.4, ito yung moment bago tayo mag-away or tapos na? kalimutan ko na rin eh"</div></div>
+        <div class="media-item"><img src="Uno.jpg" alt="Uno game"><div class="caption">"diko alam kung alam mo bang kinukunan kita sa part nato, pero ang cute kasi seryoso ka talaga, umalis lang ako saglit ikaw na naglaro ng baraha ko BHAHAHHAHA"</div></div>
+        <div class="media-item"><video controls preload="metadata"><source src="kilig.mp4" type="video/mp4"></video><div class="caption">"BWHAHAHAHAH wala along masabi, pakinggan mo nalang mabuti yung sinabi ko sa dulo🤗💔"</div></div>
+        <div class="media-item"><img src="yearend.jpeg" alt="Yearend"><div class="caption">"last pic natin together😌🙁 kala ko maayos na talaga jusko itsura ko di pa ready kinunan na kaloka, but this moment is unforgettable 🫶🥹"</div></div>
+        <div class="media-item"><video controls preload="metadata"><source src="kiligmuch.mp4" type="video/mp4"></video><div class="caption">"WAHHHHHHH diko na napigilan sa part na to kiligin😆"</div></div>
+    </div>
+    <button class="progress-btn" onclick="nextPage()">Next Chapter → 💕</button>
+</div>
+
+<!-- Page 3: Final Message -->
+<div class="page" id="page3">
+    <div class="final-message">
+        <h2>💔 Final Words 💔</h2>
+        <p>mami-miss talaga kita ng sobra as in, lahat ng memories na nabuo natin together with Pulag never ko yung makakalimutan. Sana wag ka ng lumipat ng school malaki yung chance na mag cm ulit tayo🥹  your special for me. Ill treasure all the moment with you! (lalo na yung overnight😜) always remember im here if you need may help :&gt; at kahit di na tayo mag ka klase next school year sana wag mong rin kalimutan yung friendship at samahan na nabuo natin, ILY! wag mo iwala yung certificate natin ha🫶 yun lang ingat palagi!!</p>
+        <button class="progress-btn" onclick="restartStory()">Relive Memories 💖</button>
+    </div>
+</div>
+
+<script>
+let currentPage = 1;
+const totalPages = 3;
+const bgMusic = document.getElementById('bgMusic');
+
+// Play music on first button click (avoids mobile autoplay block)
+function playMusicOnce() {
+    bgMusic.volume = 0.3;
+    bgMusic.play().catch(() => {});
+    document.removeEventListener('click', playMusicOnce);
+}
+document.addEventListener('click', playMusicOnce);
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '💖';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+    document.getElementById('hearts').appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createHeart, 800);
+
+function nextPage() {
+    const current = document.getElementById(`page${currentPage}`);
+    currentPage++;
+    if (currentPage > totalPages) { currentPage = totalPages; return; }
+    current.classList.remove('active');
+    current.classList.add('fade-out');
+    setTimeout(() => {
+        current.classList.remove('fade-out');
+        const next = document.getElementById(`page${currentPage}`);
+        next.classList.add('active');
+    }, 500);
+}
+
+function restartStory() {
+    document.querySelectorAll('.page').forEach((page, index) => {
+        page.classList.remove('active', 'fade-out');
+        if (index === 0) page.classList.add('active');
+    });
+    currentPage = 1;
+}
+
+// Keyboard + swipe support
+document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextPage(); } });
+let startX = 0;
+document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+document.addEventListener('touchend', e => { let endX = e.changedTouches[0].clientX; if (startX - endX > 50) nextPage(); });
+</script>
+
+</body>
+</html>
